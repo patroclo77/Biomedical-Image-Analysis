@@ -14,15 +14,13 @@ conda create -n pytorchenv python=3.10 -y
 conda activate pytorchenv
 pip config set global.timeout 200
 
-conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
 
 conda install numpy scipy pandas scikit-image scikit-learn matplotlib -c conda-forge
 
 conda install jupyterlab ipykernel ipywidgets -c conda-forge
 
-pip install lightning
 
-pip install nibabel pydicom dicom2nifti torchio shapely simpleitk imageio opencv-python tqdm
+conda install lightning nibabel pydicom dicom2nifti torchio shapely simpleitk imageio opencv-python tqdm
 
 conda install -c conda-forge tensorboard
 
@@ -30,6 +28,9 @@ conda install -c conda-forge tensorboard
 
 conda install notebook -c conda-forge
 
+conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
+
+conda install pyqt
 
 
 ```

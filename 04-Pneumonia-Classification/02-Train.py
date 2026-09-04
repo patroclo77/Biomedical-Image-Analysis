@@ -55,7 +55,7 @@ plt.show()
 
 # Finally, we create the train and val dataset and the corresponding data loaders.
 
-# Please adapt batch size and num_workers according to your hardware ressources.
+# Please adapt batch size and num_workers according to your hardware resources.
 
 batch_size  = 32
 num_workers = 0

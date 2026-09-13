@@ -6,14 +6,8 @@
 
 # Additionally we apply data augmentation and normalization.
 
-# Important: Augment bounding box together with image!
-# You can use BoundingBox(x1, y1, x2, y2) for that.
-# Next you call self.augment(image=img, bounding_boxes=bb) which returns the augmented image and bounding boxes
-# Finally you extract the coordinates from the augmented bbox coordinates. Note that it is a 2D array.
-
-# bb = BoundingBox(x1=bbox[0], y1=bbox[1], x2=bbox[2], y2=bbox[3])
-# img, aug_bbox  = self.augment(image=img, bounding_boxes=bb)
-# bbox = aug_bbox[0][0], aug_bbox[0][1], aug_bbox[1][0], aug_bbox[1][1]
+# Important: Configure Albumentations to transform the Pascal VOC bbox
+# together with the image. CardiacDataSet passes the bbox via `bboxes`.
 
 import Common
 import matplotlib.pyplot as plt
@@ -23,22 +17,19 @@ from albumentations import BboxParams, Compose, Affine, RandomGamma
 import os
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 
-seq = Compose(
-    [
-        RandomGamma(gamma_limit=(80, 120)),
-        Affine(
-            scale=(0.8, 1.2),
-            rotate=(-10, 10),
-            translate_px=(-10, 10)
-        )
-    ],
-    bbox_params=BboxParams(format="pascal_voc", label_fields=["labels"])
-)
-
+seq = Compose([
+    RandomGamma(gamma_limit=(80, 120), p=1.0),  # approx. imgaug GammaContrast
+    Affine(
+        scale=(0.8, 1.2),
+        rotate=(-10, 10),
+        translate_percent=(-0.1, 0.1),  # or translate_px=(-10, 10) if you want pixel translation
+        p=1.0
+    )
+], bbox_params=BboxParams(format='pascal_voc'))
 
 
 labels_path = "./rsna_heart_detection.csv"
-patients_path = "train_subjects.npy"
+patients_path = "Processed-Heart-Detection/train_subjects.npy"
 train_root = "Processed-Heart-Detection/train/"
 dataset = Common.CardiacDataSet(labels_path, patients_path, train_root, seq)
 

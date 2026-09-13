@@ -118,8 +118,8 @@ for counter, patient_id in enumerate(list(labels.name)):
 # Print sums
 print(sums)
 
-np.save("Processed-Heart-Detection/train_subjects_det", train_ids)
-np.save("Processed-Heart-Detection/val_subjects_det", val_ids)
+np.save(SAVE_PATH/"train_subjects", train_ids)
+np.save(SAVE_PATH/"val_subjects", val_ids)
 
 mean = sums / len(train_ids)
 std = np.sqrt(sums_squared / len(train_ids) - (mean**2), dtype=np.float64)

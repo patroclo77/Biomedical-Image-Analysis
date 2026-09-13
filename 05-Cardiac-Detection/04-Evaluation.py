@@ -9,13 +9,9 @@ from Common import *
 import os
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 
-
-
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-
-
-model = CardiacDetectionModel.load_from_checkpoint("logs/lightning_logs/version_2/checkpoints/epoch=99-step=1300.ckpt")
+model = CardiacDetectionModel.load_from_checkpoint("logs/lightning_logs/version_1/checkpoints/epoch=192-step=2500.ckpt")
 
 model.eval()
 model.to(device)

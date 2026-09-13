@@ -23,7 +23,6 @@ from albumentations import BboxParams, Compose, Affine, RandomGamma
 import os
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 
-
 seq = Compose(
     [
         RandomGamma(gamma_limit=(80, 120)),

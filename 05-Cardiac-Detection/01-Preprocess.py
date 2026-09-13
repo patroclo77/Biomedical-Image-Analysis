@@ -6,12 +6,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 
-
 #Read csv file
 
 labels = pd.read_csv("./rsna_heart_detection.csv")
 labels.head()
-
 
 ROOT_PATH = Path("../04-Pneumonia-Classification/rsna-pneumonia-detection-challenge/stage_2_train_images", )
 SAVE_PATH = Path("Processed-Heart-Detection/")

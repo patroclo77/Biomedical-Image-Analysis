@@ -7,7 +7,7 @@ from pytorch_lightning.callbacks import ModelCheckpoint
 from pytorch_lightning.loggers import TensorBoardLogger
 import numpy as np
 import cv2
-from Common import CardiacDetectionModel, CardiacDataSet
+from Common import *
 from albumentations import BboxParams, Compose, Affine, RandomGamma
 
 import os
